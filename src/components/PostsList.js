@@ -42,7 +42,7 @@ class PostsList extends Component {
                 </div>
                 <div className="post-comments-list">
                   <div className="post-comments-item">
-                    <div className="post-comments-header">
+                    <div className="post-comment-header">
                       <span className="post-comment-author">Bill</span>
                       <span className="post-comment-time">a minute ago</span>
                       <span className="post-comment-likes">22</span>
