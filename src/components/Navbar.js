@@ -19,7 +19,7 @@ export default function Navbar() {
           alt="search-icon"
         />
         <input placeholder="Search" />
-        <div className="search-results">
+        {/* <div className="search-results">
           <ul>
             <li className="search-results-row">
               <img
@@ -36,7 +36,7 @@ export default function Navbar() {
               <span>John Doe</span>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
       <div className="right-nav">
         <div className="user">
