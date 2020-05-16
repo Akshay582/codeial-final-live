@@ -3,13 +3,29 @@ import React, { Component } from 'react';
 export default class Login extends Component {
   constructor(props) {
     super(props);
-    this.emailInputRef = React.createRef();
-    this.passwordInputRef = React.createRef();
+    /* Uncontrolled components as the state is residing in the dom and not in   the react state */
+    // this.emailInputRef = React.createRef();
+    // this.passwordInputRef = React.createRef();
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
+  handleEmailChange = (event) => {
+    this.setState({
+      email: event.target.value,
+    });
+  };
+  handlePasswordChange = (event) => {
+    this.setState({
+      password: event.target.value,
+    });
+  };
   handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log('Email: ', this.emailInputRef);
-    console.log('Password: ', this.passwordInputRef);
+    console.log('State: ', this.state);
+    // console.log('Email: ', this.emailInputRef);
+    // console.log('Password: ', this.passwordInputRef);
   };
   render() {
     return (
@@ -20,7 +36,10 @@ export default class Login extends Component {
             type="email"
             placeholder="Email"
             required
-            ref={this.emailInputRef}
+            /* Part of uncontrolled component method */
+            // ref={this.emailInputRef}
+            onChange={this.handleEmailChange}
+            value={this.state.email}
           />
         </div>
         <div className="field">
@@ -28,7 +47,10 @@ export default class Login extends Component {
             type="password"
             placeholder="*******"
             required
-            ref={this.passwordInputRef}
+            /* Part of uncontrolled component method */
+            // ref={this.passwordInputRef}
+            onChange={this.handlePasswordChange}
+            value={this.state.password}
           />
         </div>
         <div className="field">
