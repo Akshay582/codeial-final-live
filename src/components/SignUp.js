@@ -3,30 +3,30 @@ import { startSignup, signup } from '../actions/auth';
 import { connect } from 'react-redux';
 
 class SignUp extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            email = '',
-            password = '',
-            confirmPassword = '',
-            name = ''
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      name: '',
+    };
+  }
 
-    handleInputChange = (fiels, value) => {
-        this.setState({
-            [field]: value
-        })
-    }
+  handleInputChange = (field, value) => {
+    this.setState({
+      [field]: value,
+    });
+  };
 
-    onFormSubmit = event => {
-        event.preventDefault();
-        const {email, password, confirmPassword, name} = this.state;
-        if(email && password && confirmPassword && name){
-            this.props.dispatch(startSignup());
-            this.props.dispatch(signup(email, password, confirmPassword, name));
-        }
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    const { email, password, confirmPassword, name } = this.state;
+    if (email && password && confirmPassword && name) {
+      this.props.dispatch(startSignup());
+      this.props.dispatch(signup(email, password, confirmPassword, name));
     }
+  };
   render() {
     const { inProgress, error } = this.props.auth;
     return (
@@ -38,7 +38,7 @@ class SignUp extends Component {
             type="text"
             placeholder="Name"
             required
-            onChange={e => this.handleInputChange('name', e.target.value)}
+            onChange={(e) => this.handleInputChange('name', e.target.value)}
           />
         </div>
         <div className="field">
@@ -46,7 +46,7 @@ class SignUp extends Component {
             type="email"
             placeholder="Email"
             required
-            onChange={e => this.handleInputChange('email', e.target.value)}
+            onChange={(e) => this.handleInputChange('email', e.target.value)}
           />
         </div>
         <div className="field">
@@ -54,7 +54,7 @@ class SignUp extends Component {
             type="password"
             placeholder="Password"
             required
-            onChange={e => this.handleInputChange('Password', e.target.value)}
+            onChange={(e) => this.handleInputChange('Password', e.target.value)}
           />
         </div>
         <div className="field">
@@ -62,21 +62,21 @@ class SignUp extends Component {
             type="password"
             placeholder="Confirm Password"
             required
-            onChange={e => this.handleInputChange('confirmPassword', e.target.value)}
+            onChange={(e) =>
+              this.handleInputChange('confirmPassword', e.target.value)
+            }
           />
         </div>
         <div className="field">
-            <button onClick={this.onFormSubmit} disabled={inProgress}>
-              SignUp
-            </button>
+          <button onClick={this.onFormSubmit} disabled={inProgress}>
+            SignUp
+          </button>
         </div>
       </form>
     );
   }
 }
 
-const mapStateToProps = ({auth}) => {
-    auth,
-}
+const mapStateToProps = ({ auth }) => auth;
 
 export default connect(mapStateToProps)(SignUp);
