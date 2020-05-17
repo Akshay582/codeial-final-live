@@ -5,6 +5,7 @@ import {
   SIGNUP_START,
   SIGNUP_FAILED,
   SIGNUP_SUCCESS,
+  CLEAR_AUTH_STATE,
   AUTHENTICATE_USER,
   LOG_OUT,
 } from './actionTypes';
@@ -116,5 +117,11 @@ export function signupSuccessfull(user) {
   return {
     type: SIGNUP_SUCCESS,
     user,
+  };
+}
+
+export function clearAuthState() {
+  return {
+    type: CLEAR_AUTH_STATE,
   };
 }

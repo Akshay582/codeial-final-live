@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { startSignup, signup } from '../actions/auth';
+import { startSignup, signup, clearAuthState } from '../actions/auth';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
   constructor(props) {
@@ -11,6 +12,10 @@ class SignUp extends Component {
       confirmPassword: '',
       name: '',
     };
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
   }
 
   handleInputChange = (field, value) => {
@@ -28,10 +33,13 @@ class SignUp extends Component {
     }
   };
   render() {
-    const { inProgress, error } = this.props.auth;
+    const { error, inProgress, isLoggedIn } = this.props.auth;
+    if (isLoggedIn) {
+      return <Redirect to="/" />;
+    }
     return (
       <form className="login-form">
-        <span className="login-signup-header">Log In</span>
+        <span className="login-signup-header">Signup</span>
         {error && <div className="alert error-dailog">{error}</div>}
         <div className="field">
           <input
@@ -77,6 +85,8 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => auth;
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
 
 export default connect(mapStateToProps)(SignUp);

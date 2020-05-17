@@ -27,7 +27,7 @@ class Navbar extends Component {
             alt="search-icon"
           />
           <input placeholder="Search" />
-          <div className="search-results">
+          {/* <div className="search-results">
             <ul>
               <li className="search-results-row">
                 <img
@@ -44,7 +44,7 @@ class Navbar extends Component {
                 <span>John Doe</span>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
         <div className="right-nav">
           {auth.isLoggedIn && (
